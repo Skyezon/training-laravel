@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'ViewController@viewHome');
+Route::get('/', 'ViewController@viewHome')->name('viewHome');
 Route::post('/artikel/create','ArtikelController@create')->name('createArtikel');
+Route::get('/artikel/show','ArtikelController@show')->name('showArtikel');
 

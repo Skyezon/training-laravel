@@ -1,14 +1,34 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+@extends('template.head')
 
-</head>
-<body>
+@section('title','Show Artikel')
 
-</body>
-</html>
+@section('content')
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col"><No></No></th>
+            <th scope="col">Judul</th>
+            <th scope="col">Penulis</th>
+            <th scope="col">Konten</th>
+            <th scope="col">image</th>
+            <th scope="col">Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach($artikels as $key =>$artikel)
+                <tr>
+                    <th scope="row">{{$key}}</th>
+                    <td>{{$artikel->judul}}</td>
+                    <td>{{$artikel->penulis}}</td>
+                    <td>{{$artikel->konten}}</td>
+                    <td><img src="{{asset('storage/'.$artikel->image)}}" width="100px" alt="{{'image-'.$key}}"></td>
+                    <td>
+                        <button class="btn btn-success">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@endsection
