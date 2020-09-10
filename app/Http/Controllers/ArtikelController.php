@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Artikel;
 use App\Http\Requests\ArtikelRequest;
+use App\Jobs\ProcessMail;
+use App\Mail\SubscriptionMail;
+use http\Env\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ArtikelController extends Controller
@@ -18,6 +22,12 @@ class ArtikelController extends Controller
     public function  viewCreateArtikel(){
         return view('createArtikel');
     }
+
+    public function sendMail(Request $request){
+//        return (new SubscriptionMail())->render();
+       $this->dispatch(new ProcessMail($request));
+    }
+
 
     public function delete($id){
         $artikel = Artikel::find($id);

@@ -3,6 +3,9 @@
 @section('title','Artikel')
 
 @section('content')
+    <div class="d-flex justify-content-center">
+        <a href="{{route('sendMail')}}">kirim mail</a>
+    </div>
     <div class="container">
         <h1 class="jumbotron text-center">
             {{$artikel->judul}}
