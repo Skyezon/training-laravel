@@ -7,6 +7,7 @@ use App\Http\Requests\ArtikelRequest;
 use App\Jobs\ProcessMail;
 use App\Mail\SubscriptionMail;
 use http\Env\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,15 @@ class ArtikelController extends Controller
 //        $artikels = Artikel::all();
 //        $artikels = Artikel::where(,,)->paginate(5);
         $artikels = Artikel::paginate(5);
+        $user = Auth::user();
         return view('showData',compact('artikels'));
+    }
+
+    public function showUserArtikel(){
+        $user = Auth::user();
+        $artikelRelated = $user->artikels;
+//        $artikelRelated = Artikel::where('user_id','=',$user->id)->paginate(5);
+        return view('myartikel',['artikels' => $artikelRelated]);
     }
 
     public function  viewCreateArtikel(){
@@ -63,9 +72,9 @@ class ArtikelController extends Controller
 
     public function create(ArtikelRequest $request){
 
-
         $path = $request->file('image')->store('artikel_images');
         Artikel::create([
+            'user_id' => Auth::user()->id,
             'judul' => $request->judul,
             'konten' => $request->konten,
             'penulis' => $request->penulis,

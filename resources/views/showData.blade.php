@@ -22,15 +22,7 @@
                     <td>{{$artikel->penulis}}</td>
                     <td>{{$artikel->konten}}</td>
                     <td><img src="{{asset('storage/'.$artikel->image)}}" width="100px" alt="{{'image-'.$key}}"></td>
-                    <td>
-                        <a href="{{route('showUpdateArtikel',$artikel->id)}}" class="btn btn-success">Edit</a>
-                        <form action="{{route('deleteArtikel',['id' => $artikel->id])}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-danger" value="submit">Delete</button>
-                        </form>
-{{--                        <a href="{{route('deleteArtikel',$artikel->id)}}" class="btn btn-danger">delete</a>--}}
-                    </td>
+
                 </tr>
             @endforeach
         </tbody>

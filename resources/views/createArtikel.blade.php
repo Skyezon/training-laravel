@@ -18,6 +18,8 @@
         @endforeach
     @endif
 
+
+
     <form class="p-5" action="{{route('createArtikel')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -31,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail3">Nama penulis</label>
-            <input name="penulis" type="text" class="form-control" id="exampleInputEmail3" placeholder="Penulis artikel" aria-describedby="emailHelp">
+            <input name="penulis" type="text" value="{{Auth::user()->name}}" class="form-control" id="exampleInputEmail3" placeholder="Penulis artikel" aria-describedby="emailHelp">
         </div>
         <div class="custom-file">
             <input type="file" class="" name="image" id="customFile">

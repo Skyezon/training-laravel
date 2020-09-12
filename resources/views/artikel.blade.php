@@ -20,8 +20,18 @@
             </p>
             <sub class="align-self-end">by {{$artikel->penulis}}</sub>
         </div>
-
-
     </div>
+    <form class="form-group" enctype="multipart/form-data" action="{{route('createComment',$artikel->id)}}" method="post">
+        @csrf
+        <textarea class="form-control mt-5 mx-4" cols="10" placeholder="input your comment" name="comment"></textarea>
+        <button type="submit" class="ml-4 mt-3 btn btn-primary">Submit</button>
+    </form>
+
+    @foreach($artikel->commentUsers as $user)
+        <div class="alert alert-success d-flex justify-content-center align-items-center">
+            <p>{{$user->pivot->comment}}</p>
+            <sub>by {{$user->name}}</sub>
+        </div>
+    @endforeach
 
 @endsection
